@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">StemApp</string>
+    <string name="homeButtonText">Login</string>
+    <string name="homeText">Login with your Blockchain ID and make your voice heard.</string>
+</resources>
