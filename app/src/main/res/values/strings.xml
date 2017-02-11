@@ -7,6 +7,9 @@
     <string name="confirmationDialogTitle">You want to vote for</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="successText">Your vote was successful!</string>
+    <string name="secretTokenWarning">Verify your vote later by remembering this vote</string>
+    <string name="countdownWarning">This will disappear in 10 seconds</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

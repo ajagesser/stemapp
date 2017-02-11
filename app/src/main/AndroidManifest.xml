@@ -19,11 +19,11 @@
         </activity>
         <activity
             android:name=".CandidateListActivity"
-            android:parentActivityName=".PartyListActivity"></activity>
+            android:parentActivityName=".PartyListActivity" />
         <activity
             android:name=".PartyListActivity"
             android:parentActivityName=".HomeActivity" />
-
-
+        <activity android:name=".SuccessActivity"></activity>
     </application>
+
 </manifest>

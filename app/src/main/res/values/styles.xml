@@ -28,12 +28,9 @@
         <item name="android:paddingBottom">20dp</item>
     </style>
 
-    <style name="DialogNegativeButtonStyle" parent="CustomButtonStyle">
+    <style name="DialogNegativeButtonStyle" parent="DialogPositiveButtonStyle">
         <item name="android:background">@drawable/button_red</item>
-        <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:paddingTop">20dp</item>
-        <item name="android:paddingBottom">20dp</item>
     </style>
 
     <style name="ConfirmationDialogStyle" parent="Theme.AppCompat.Dialog.Alert">
@@ -44,5 +41,19 @@
         <item name="android:textSize">18sp</item>
         <item name="android:paddingTop">20dp</item>
         <item name="android:paddingBottom">20dp</item>
+    </style>
+
+    <style name="SecretPopupDialogStyle" parent="android:style/Theme.Dialog">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.7</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowActionModeOverlay">true</item>
     </style>
 </resources>

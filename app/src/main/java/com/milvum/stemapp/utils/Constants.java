@@ -15,4 +15,6 @@ public final class Constants {
     public static final String PARTY_NAME = "Party_Name";
     public static final String CANDIDATE = "Candidate";
     public static final String CONFIRMATION_DIALOG = "Confirmation Dialog";
+    public static final int SECRET_WAIT_TIME =  1000* 1;
+    public static final String TOKENS =  "abcdefghijklmnopqrstuvwxyz";
 }
