@@ -1,10 +1,13 @@
 package com.milvum.stemapp.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by Randy Tjin Asjoe on 10/02/2017.
  */
 
-public class Candidate {
+public class Candidate implements Parcelable {
 
     private int mId;
     private String mLastName;
@@ -63,4 +66,39 @@ public class Candidate {
     public String getFirstLetter() {
         return "" + mFirstName.charAt(0);
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(mId);
+        dest.writeString(mLastName);
+        dest.writeString(mFirstName);
+        dest.writeString(mGender);
+        dest.writeString(mCity);
+    }
+
+    // this is used to regenerate your object. All Parcelables must have a CREATOR that implements these two methods
+    public static final Parcelable.Creator<Candidate> CREATOR = new Parcelable.Creator<Candidate>() {
+        public Candidate createFromParcel(Parcel in) {
+            return new Candidate(in);
+        }
+
+        public Candidate[] newArray(int size) {
+            return new Candidate[size];
+        }
+    };
+
+    // example constructor that takes a Parcel and gives you an object populated with it's values
+    private Candidate(Parcel in) {
+        mId = in.readInt();
+        mLastName = in.readString();
+        mFirstName = in.readString();
+        mGender = in.readString();
+        mCity = in.readString();
+    }
 }
+

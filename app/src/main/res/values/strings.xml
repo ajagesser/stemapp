@@ -1,11 +1,14 @@
 <resources>
-    <string name="app_name">StemApp</string>
+    <string name="app_name">Uvotia</string>
     <string name="homeButtonText">Login</string>
     <string name="voteButtonText">Vote Now</string>
     <string name="homeText">Login with your Blockchain ID and make your voice heard.</string>
-    <string name="partyTitle">Partijen</string>
+    <string name="partyTitle">Parties</string>
     <string name="confirmationDialogTitle">You want to vote for</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -10,15 +10,39 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
-
     <style name="CustomButtonStyle" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:textColor">@color/white</item>
         <item name="android:gravity">center</item>
-        <item name="android:background">@drawable/round_button_blue</item>
+        <item name="android:background">@drawable/button_blue</item>
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:textSize">18sp</item>
         <item name="android:paddingTop">20dp</item>
         <item name="android:paddingBottom">20dp</item>
     </style>
 
+    <style name="DialogPositiveButtonStyle" parent="CustomButtonStyle">
+        <item name="android:background">@drawable/button_white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:paddingTop">20dp</item>
+        <item name="android:paddingBottom">20dp</item>
+    </style>
+
+    <style name="DialogNegativeButtonStyle" parent="CustomButtonStyle">
+        <item name="android:background">@drawable/button_red</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:paddingTop">20dp</item>
+        <item name="android:paddingBottom">20dp</item>
+    </style>
+
+    <style name="ConfirmationDialogStyle" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/button_blue</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:paddingTop">20dp</item>
+        <item name="android:paddingBottom">20dp</item>
+    </style>
 </resources>
