@@ -35,28 +35,7 @@ public class CandidateListActivity extends AppCompatActivity {
 
         selectedIndex = -1;
 
-
-        final List<Candidate> candidates = new ArrayList<>();
-
-        candidates.add(
-                new Candidate(
-                        0,
-                        "Rutte",
-                        "Mark",
-                        "m",
-                        "`s-Gravenhage"
-                )
-        );
-        candidates.add(
-                new Candidate(
-                        1,
-                        "Hennis-Plasschaert",
-                        "Jeanine",
-                        "v",
-                        "`s-Gravenhage"
-                )
-        );
-
+        final List<Candidate> candidates = getCandidates();
 
         final ListView candidateList = (ListView) findViewById(R.id.candidate_list);
 
@@ -83,6 +62,8 @@ public class CandidateListActivity extends AppCompatActivity {
                 }
         );
     }
+
+
 
     protected void showConfirmationDialog(String partyName, Candidate candidate) {
         // DialogFragment.show() will take care of adding the fragment
@@ -116,5 +97,29 @@ public class CandidateListActivity extends AppCompatActivity {
             voteButton.setEnabled(false);
             return false;
         }
+    }
+
+    private List<Candidate> getCandidates() {
+        List<Candidate> candidates = new ArrayList<>();
+        candidates.add(
+                new Candidate(
+                        1,
+                        "Rutte",
+                        "Mark",
+                        "m",
+                        "`s-Gravenhage"
+                )
+        );
+        candidates.add(
+                new Candidate(
+                        2,
+                        "Hennis-Plasschaert",
+                        "Jeanine",
+                        "v",
+                        "`s-Gravenhage"
+                )
+        );
+
+        return candidates;
     }
 }
