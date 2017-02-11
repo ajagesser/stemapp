@@ -45,7 +45,7 @@ public class CandidateAdapter extends ArrayAdapter<Candidate> {
         TextView cityView = (TextView) convertView.findViewById(R.id.candidate_city);
 
         // Populate the data into the template view using the data object
-        numView.setText("" + (position + 1));
+        numView.setText("" + candidate.getId());
         lastNameView.setText(candidate.getLastName());
         firstLetterView.setText(candidate.getFirstLetter());
         firstNameView.setText(candidate.getFirstName());
