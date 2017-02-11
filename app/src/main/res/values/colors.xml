@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#007bc7</color>
-    <!--<color name="colorPrimary">#3469f3</color>-->
-    <!--<color name="colorPrimaryDark">#01689b</color>-->
     <color name="colorPrimaryDark">#154273</color>
-
     <color name="colorAccent">#007bc7</color>
     <color name="colorTextSuccess">#417505</color>
     <color name="colorCircleSuccess">#7ed321</color>
     <color name="colorTextNormal">#4a4a4a</color>
     <color name="colorRed">#b6081d</color>
-    <color name="colorRow">#d1efa4</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="blue">#007bc7</color>
