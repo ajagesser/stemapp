@@ -12,25 +12,19 @@ import android.widget.TextView;
 import com.milvum.stemapp.model.Candidate;
 import com.milvum.stemapp.utils.Constants;
 
-
 public class ConfirmationDialogFragment extends DialogFragment {
-
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Get Data from Bundle
+        // Get candidate data & party name from bundle
         String partyName = getArguments().getString(Constants.PARTY_NAME);
         Candidate candidate = (Candidate) getArguments().get(Constants.CANDIDATE);
         String firstRowText = String.format("%s %s", candidate.getId(), candidate.getLastName());
         String secondRowText = String.format("%s. (%s) (%s)", candidate.getFirstLetter(), candidate.getFirstName(), candidate.getGender());
-        String thirdRowText = String.format("%s",  candidate.getCity());
+        String thirdRowText = String.format("%s", candidate.getCity());
 
+        //Set data to the correct TextViews
         View confirmationView = inflater.inflate(R.layout.dialog_confirmation_vote, container, false);
         TextView partyNameTextView = (TextView) confirmationView.findViewById(R.id.party_name);
         TextView candidateFirstRowTextView = (TextView) confirmationView.findViewById(R.id.candidate_first_row);
