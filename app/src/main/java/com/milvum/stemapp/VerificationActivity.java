@@ -36,6 +36,7 @@ public class VerificationActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         Intent i = new Intent(VerificationActivity.this, HomeActivity.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(i);
                     }
                 });

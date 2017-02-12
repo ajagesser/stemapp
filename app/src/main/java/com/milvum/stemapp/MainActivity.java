@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 dialog.dismiss();
 
                 Intent i = new Intent(MainActivity.this, HomeActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
             }
 

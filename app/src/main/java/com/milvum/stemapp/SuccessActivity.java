@@ -86,6 +86,7 @@ public class SuccessActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         Intent i = new Intent(SuccessActivity.this, HomeActivity.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(i);
                     }
                 });
