@@ -1,6 +1,8 @@
 package com.milvum.stemapp;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,7 +21,19 @@ import com.milvum.stemapp.utils.Utils;
 
 import java.util.Random;
 
+import com.loopj.android.http.*;
+import cz.msebera.android.httpclient.Header;
+import dmax.dialog.SpotsDialog;
+
 public class SuccessActivity extends AppCompatActivity {
+
+    private AsyncHttpClient client;
+    private AlertDialog dialog;
+    private AlertDialog alertDialog;
+
+    private String local = "http://localhost";
+    private String remote = "http://staging.milvum.com";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +41,41 @@ public class SuccessActivity extends AppCompatActivity {
         setContentView(R.layout.activity_success);
         setTitle(getString(R.string.successTitle));
 
+        client = new AsyncHttpClient();
+        alertDialog = new AlertDialog.Builder(this).create();
+
         fillTextViews();
 
         initialize();
+        vote();
+    }
+
+    private void vote () {
+        RequestParams params = new RequestParams();
+        params.put("stembiljet_id", 1); //todo hardcoded change per build
+        params.put("kandidaat", 1); //todo hardcoded change per build
+
+        client.post(remote + ":3000/api/vote", params ,new AsyncHttpResponseHandler() {
+
+            @Override
+            public void onStart() {
+                // called before request is started
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+
+            }
+
+            @Override
+            public void onRetry(int retryNo) {
+                // called when request is retried
+            }
+        });
     }
 
     private void initialize() {
