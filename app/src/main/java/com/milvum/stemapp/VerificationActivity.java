@@ -1,6 +1,5 @@
 package com.milvum.stemapp;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +9,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
-import com.milvum.stemapp.model.Candidate;
 import com.milvum.stemapp.model.Vote;
 import com.milvum.stemapp.utils.Constants;
 import com.milvum.stemapp.utils.Utils;

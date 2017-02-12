@@ -12,11 +12,9 @@ import com.milvum.stemapp.utils.Constants;
 import com.milvum.stemapp.utils.Utils;
 import com.milvum.stemapp.view.VoteAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class VotingTilesActivty extends AppCompatActivity {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,18 +38,9 @@ public class VotingTilesActivty extends AppCompatActivity {
     }
 
     private List<Vote> getVoteList() {
-//        String[] tokens = new String[Constants.AMOUNT_VOTES];
+        // TODO: Get votes from stored data.
         List<Vote> savedVotes = Utils.getVotes();
-
-//        Utils.getStoreSet(getApplicationContext(), Constants.TOKEN_PREFS, Constants.TOKENS).toArray(tokens);
-
-        // TODO: Randomize positions
-
-//        for (int i = 0; i < tokens.length; i++) {
-//            Vote vote = ;
-//            votes.add(vote);
-//        }
-
+        // TODO: Randomize positions of tiles.
 
         return savedVotes;
     }

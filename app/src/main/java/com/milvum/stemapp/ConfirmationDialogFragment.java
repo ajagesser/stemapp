@@ -58,7 +58,7 @@ public class ConfirmationDialogFragment extends DialogFragment {
 
     private void setDialogContent(View parentView) {
         String id = candidate.getId().equals("-1") ? "" : "" + candidate.getId();
-        final String firstRowText = candidate.getId().equals("-1")? candidate.getLastName() : String.format("%s %s", id, candidate.getLastName());
+        final String firstRowText = candidate.getId().equals("-1") ? candidate.getLastName() : String.format("%s %s", id, candidate.getLastName());
         final String secondRowText = candidate.getId().equals("-1") ? "" : String.format("%s. (%s) (%s)", candidate.getFirstLetter(), candidate.getFirstName(), candidate.getGender());
         final String thirdRowText = candidate.getId().equals("-1") ? "" : String.format("%s", candidate.getCity());
         Utils.setTextViewText(parentView, R.id.party_name, partyName);

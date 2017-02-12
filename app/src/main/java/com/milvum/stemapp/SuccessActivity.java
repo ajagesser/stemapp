@@ -2,7 +2,6 @@ package com.milvum.stemapp;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,7 +22,6 @@ import java.util.Random;
 
 import com.loopj.android.http.*;
 import cz.msebera.android.httpclient.Header;
-import dmax.dialog.SpotsDialog;
 
 public class SuccessActivity extends AppCompatActivity {
 
@@ -153,8 +151,9 @@ public class SuccessActivity extends AppCompatActivity {
         Candidate candidate = getIntent().getParcelableExtra(Constants.CANDIDATE);
 
         Vote vote = new Vote(voteId, userToken, partyName, candidate, position);
+        // TODO: Store votes on device.
         Utils.saveVotes(vote);
-//        Utils.storeVote(getApplicationContext(), vote);
+
 
         ArraySet<String> tokens = new ArraySet();
         tokens.add(userToken);
@@ -165,9 +164,6 @@ public class SuccessActivity extends AppCompatActivity {
                 generateRandomVote(token);
             }
         }
-
-//        Utils.storeSet(getApplicationContext(), Constants.TOKEN_PREFS, Constants.TOKENS, tokens);
-
     }
 
     private ArraySet<String> getUniqueTokens(ArraySet<String> list, int size) {
@@ -193,7 +189,7 @@ public class SuccessActivity extends AppCompatActivity {
         Candidate selected = random.nextBoolean() ? salim : viresh;
 
         Vote vote = new Vote(voteId, token, "DAPP", selected, -1);
-//        Utils.storeVote(getApplicationContext(), vote);
+        // TODO: Store vote locally
         Utils.saveVotes(vote);
     }
 

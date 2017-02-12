@@ -13,7 +13,6 @@ import com.milvum.stemapp.model.Party;
 import com.milvum.stemapp.utils.Utils;
 import com.milvum.stemapp.view.CandidateAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CandidateListActivity extends AppCompatActivity {
