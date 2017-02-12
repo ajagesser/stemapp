@@ -6,6 +6,7 @@
     <color name="colorTextSuccess">#417505</color>
     <color name="colorCircleSuccess">#7ed321</color>
     <color name="dark_gray">#4a4a4a</color>
+    <color name="semi_gray">#787878</color>
     <color name="colorRed">#b6081d</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>

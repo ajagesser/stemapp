@@ -4,18 +4,18 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by Randy Tjin Asjoe on 10/02/2017.
+ * Created by Randy Tjin Asjoe on 02/10/2017.
  */
 
 public class Candidate implements Parcelable {
 
-    private int mId;
+    private String mId;
     private String mLastName;
     private String mFirstName;
     private String mGender;
     private String mCity;
 
-    public Candidate(int id, String lastName, String firstName, String gender, String city) {
+    public Candidate(String id, String lastName, String firstName, String gender, String city) {
         mId = id;
         mLastName = lastName;
         mFirstName = firstName;
@@ -23,11 +23,11 @@ public class Candidate implements Parcelable {
         mCity = city;
     }
 
-    public int getId() {
+    public String getId() {
         return mId;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.mId = id;
     }
 
@@ -74,7 +74,7 @@ public class Candidate implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(mId);
+        dest.writeString(mId);
         dest.writeString(mLastName);
         dest.writeString(mFirstName);
         dest.writeString(mGender);
@@ -94,7 +94,7 @@ public class Candidate implements Parcelable {
 
     // example constructor that takes a Parcel and gives you an object populated with it's values
     private Candidate(Parcel in) {
-        mId = in.readInt();
+        mId = in.readString();
         mLastName = in.readString();
         mFirstName = in.readString();
         mGender = in.readString();

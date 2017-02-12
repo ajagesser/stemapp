@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.milvum.stemapp.model.Candidate;
 import com.milvum.stemapp.model.Party;
+import com.milvum.stemapp.utils.Utils;
 import com.milvum.stemapp.view.PartyAdapter;
 
 import java.util.ArrayList;
@@ -18,6 +20,8 @@ import java.util.List;
  */
 public class PartyListActivity extends AppCompatActivity {
 
+    private ListView partyList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +29,7 @@ public class PartyListActivity extends AppCompatActivity {
 
         setTitle(R.string.partyTitle);
 
-        final ListView partyList = (ListView) findViewById(R.id.party_list);
+        partyList = (ListView) findViewById(R.id.party_list);
 
         PartyAdapter adapter = new PartyAdapter(this, R.layout.party_item, getPartyList());
         partyList.setAdapter(adapter);
@@ -33,12 +37,27 @@ public class PartyListActivity extends AppCompatActivity {
         partyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Intent intent = new Intent(PartyListActivity.this, CandidateListActivity.class);
-                intent.putExtra("party", (Party) partyList.getItemAtPosition(position));
-                startActivity(intent);
+                if (position == 0) {
+                    voteBlank(position);
+                } else {
+                    goToCandidateList(position);
+                }
             }
         });
+    }
+
+    private void voteBlank(int position) {
+        Party party = (Party) partyList.getItemAtPosition(position);
+        String partyListNumber = "Lijst " + party.getId();
+        Candidate noCandidate = new Candidate("-1", partyListNumber, "", "", "");
+
+        Utils.showConfirmationDialog(this, party.getName(), noCandidate);
+    }
+
+    private void goToCandidateList(int position) {
+        Intent intent = new Intent(PartyListActivity.this, CandidateListActivity.class);
+        intent.putExtra("party", (Party) partyList.getItemAtPosition(position));
+        startActivity(intent);
     }
 
     private List<Party> getPartyList() {
@@ -48,7 +67,7 @@ public class PartyListActivity extends AppCompatActivity {
                         0,
                         "Blanco",
                         0,
-                        R.drawable.party
+                        R.drawable.background_vote
                 )
         );
         parties.add(

@@ -13,9 +13,10 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Button loginButton = (Button) this.findViewById(R.id.loginButton);
+        Button nextButton = (Button) this.findViewById(R.id.nextButton);
+        Button verifyButton = (Button) this.findViewById(R.id.verifyButton);
 
-        loginButton.setOnClickListener(
+        nextButton.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         Intent i = new Intent(HomeActivity.this, PartyListActivity.class);
@@ -23,6 +24,14 @@ public class HomeActivity extends AppCompatActivity {
                     }
                 }
         );
+
+        verifyButton.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent i = new Intent(HomeActivity.this, VotingTilesActivty.class);
+                        startActivity(i);
+                    }
+                }
+        );
     }
 }
-

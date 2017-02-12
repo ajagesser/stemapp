@@ -2,16 +2,22 @@
     <string name="app_name">Uvotia</string>
     <string name="homeButtonText">Login</string>
     <string name="voteButtonText">Vote Now</string>
+    <string name="verifyButtonText">Verify your vote</string>
+    <string name="startButtonText">Start Voting</string>
     <string name="homeText">Login with your Blockchain ID and make your voice heard.</string>
     <string name="partyTitle">Parties</string>
+    <string name="successTitle">Vote submission</string>
+    <string name="verificationTitle">Vote verification</string>
+    <string name="votingTilesTitle">Select your vote</string>
     <string name="confirmationDialogTitle">You want to vote for</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="successText">Your vote was successful!</string>
-    <string name="secretTokenWarning">Verify your vote later by remembering this vote</string>
-    <string name="countdownWarning">This will disappear in 10 seconds</string>
+    <string name="secretTokenWarning">Remember this symbol to verify your vote later</string>
+    <string name="countdownWarning">This will disappear in 10 seconds!</string>
+    <string name="goHomeButtonText">Go to Home</string>
+    <string name="verificationSuccess">Your vote is verified!</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>

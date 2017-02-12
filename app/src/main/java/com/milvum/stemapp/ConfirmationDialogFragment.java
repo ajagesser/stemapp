@@ -57,10 +57,10 @@ public class ConfirmationDialogFragment extends DialogFragment {
     }
 
     private void setDialogContent(View parentView) {
-        final String firstRowText = String.format("%s %s", candidate.getId(), candidate.getLastName());
-        final String secondRowText = String.format("%s. (%s) (%s)", candidate.getFirstLetter(), candidate.getFirstName(), candidate.getGender());
-        final String thirdRowText = String.format("%s", candidate.getCity());
-
+        String id = candidate.getId().equals("-1") ? "" : "" + candidate.getId();
+        final String firstRowText = candidate.getId().equals("-1")? candidate.getLastName() : String.format("%s %s", id, candidate.getLastName());
+        final String secondRowText = candidate.getId().equals("-1") ? "" : String.format("%s. (%s) (%s)", candidate.getFirstLetter(), candidate.getFirstName(), candidate.getGender());
+        final String thirdRowText = candidate.getId().equals("-1") ? "" : String.format("%s", candidate.getCity());
         Utils.setTextViewText(parentView, R.id.party_name, partyName);
         Utils.setTextViewText(parentView, R.id.candidate_first_row, firstRowText);
         Utils.setTextViewText(parentView, R.id.candidate_second_row, secondRowText);

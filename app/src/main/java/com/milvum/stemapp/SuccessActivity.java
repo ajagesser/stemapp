@@ -4,14 +4,16 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
+import android.support.v4.util.ArraySet;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.milvum.stemapp.model.Candidate;
+import com.milvum.stemapp.model.Vote;
 import com.milvum.stemapp.utils.Constants;
 import com.milvum.stemapp.utils.Utils;
 
@@ -23,9 +25,9 @@ public class SuccessActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_success);
+        setTitle(getString(R.string.successTitle));
 
-        Intent intent = getIntent();
-        fillTextViews(intent);
+        fillTextViews();
 
         initialize();
     }
@@ -35,18 +37,30 @@ public class SuccessActivity extends AppCompatActivity {
         final View loadingIcon = findViewById(R.id.loading_icon);
         loadingIcon.startAnimation(rotation);
 
+        final Button homeButton = (Button) findViewById(R.id.homeButton);
+        homeButton.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent i = new Intent(SuccessActivity.this, HomeActivity.class);
+                        startActivity(i);
+                    }
+                });
+        homeButton.setEnabled(false);
+
         final Animation animation = AnimationUtils.loadAnimation(this, R.anim.grow);
         final Dialog dialog = new Dialog(this, R.style.SecretPopupDialogStyle);
         dialog.setContentView(R.layout.popup_secret_token);
-        setDialogSecretToken(dialog);
-        final Handler handler = new Handler(getMainLooper());
         final View countdown = dialog.findViewById(R.id.secret_countdown);
+
+        final Handler handler = new Handler(getMainLooper());
+
 
         final Runnable hideSecretToken = new Runnable() {
             @Override
             public void run() {
                 countdown.clearAnimation();
                 dialog.dismiss();
+
             }
         };
 
@@ -63,39 +77,105 @@ public class SuccessActivity extends AppCompatActivity {
         Runnable showSuccess = new Runnable() {
             @Override
             public void run() {
+                generateVotes(dialog);
                 onSuccess();
                 handler.postDelayed(showSecretToken, Constants.SECRET_WAIT_TIME);
             }
         };
 
+
         handler.postDelayed(showSuccess, Constants.SECRET_WAIT_TIME);
     }
 
+    private void generateVotes(Dialog dialog) {
+        // Clear votes
+        Utils.clearVotes();
+
+
+        // User vote
+        String voteId = "1234BRA";
+        String userToken = Utils.getRandomToken();
+
+        // Inflate Dialog with custom layout.
+        setDialogSecretToken(dialog, userToken);
+
+
+        // Generate random position;
+        int position = new Random().nextInt(Constants.AMOUNT_VOTES);
+
+        String partyName = getIntent().getStringExtra(Constants.PARTY_NAME);
+        Candidate candidate = getIntent().getParcelableExtra(Constants.CANDIDATE);
+
+        Vote vote = new Vote(voteId, userToken, partyName, candidate, position);
+        Utils.saveVotes(vote);
+//        Utils.storeVote(getApplicationContext(), vote);
+
+        ArraySet<String> tokens = new ArraySet();
+        tokens.add(userToken);
+        tokens = getUniqueTokens(tokens, Constants.AMOUNT_VOTES);
+        for (int i = 0; i < tokens.size(); i++) {
+            String token = tokens.valueAt(i);
+            if (!userToken.equals(token)) {
+                generateRandomVote(token);
+            }
+        }
+
+//        Utils.storeSet(getApplicationContext(), Constants.TOKEN_PREFS, Constants.TOKENS, tokens);
+
+    }
+
+    private ArraySet<String> getUniqueTokens(ArraySet<String> list, int size) {
+        String token;
+        int i = 0;
+        int remainingSize = size - list.size();
+        while (i < remainingSize) {
+            token = Utils.getRandomToken();
+
+            if (!list.contains(token)) {
+                list.add(token);
+                i++;
+            }
+        }
+        return list;
+    }
+
+    private void generateRandomVote(String token) {
+        Random random = new Random();
+        String voteId = "" + random.nextInt(Constants.VOTE_ID_LIMIT);
+        Candidate salim = new Candidate("1", "Hadri", "Salim", "m", "`s-Gravenhage");
+        Candidate viresh = new Candidate("2", "Jagesser", "Viresh", "m", "`s-Gravenhage");
+        Candidate selected = random.nextBoolean() ? salim : viresh;
+
+        Vote vote = new Vote(voteId, token, "DAPP", selected, -1);
+//        Utils.storeVote(getApplicationContext(), vote);
+        Utils.saveVotes(vote);
+    }
+
+
     private void onSuccess() {
+        final Button homeButton = (Button) findViewById(R.id.homeButton);
+        homeButton.setEnabled(true);
         Utils.setViewVisibility(this.getDelegate(), R.id.loading_state, View.INVISIBLE);
         Utils.setViewVisibility(this.getDelegate(), R.id.success_state, View.VISIBLE);
         final View loadingIcon = findViewById(R.id.loading_icon);
         loadingIcon.clearAnimation();
+
     }
 
-    private void setDialogSecretToken(Dialog dialog) {
-        final String secretToken = getRandomToken();
+
+    private void setDialogSecretToken(Dialog dialog, String token) {
         final TextView secretTokenTextView = (TextView) dialog.findViewById(R.id.secret_token);
-        secretTokenTextView.setText(secretToken);
+        secretTokenTextView.setText(token);
     }
 
-    @NonNull
-    private String getRandomToken() {
-        Random random = new Random();
-        return String.valueOf(Constants.TOKENS.charAt(random.nextInt(Constants.TOKENS.length())));
-    }
 
-    private void fillTextViews(Intent intent) {
+    private void fillTextViews() {
+        Intent intent = getIntent();
         final String partyName = intent.getStringExtra(Constants.PARTY_NAME);
         final Candidate candidate = intent.getParcelableExtra(Constants.CANDIDATE);
-        final String firstRowText = String.format("%s %s", candidate.getId(), candidate.getLastName());
-        final String secondRowText = String.format("%s. (%s) (%s)", candidate.getFirstLetter(), candidate.getFirstName(), candidate.getGender());
-        final String thirdRowText = String.format("%s", candidate.getCity());
+        final String firstRowText = candidate.getId().equals("-1") ? candidate.getLastName() : String.format("%s %s", candidate.getId(), candidate.getLastName());
+        final String secondRowText = candidate.getId().equals("-1") ? "" : String.format("%s. (%s) (%s)", candidate.getFirstLetter(), candidate.getFirstName(), candidate.getGender());
+        final String thirdRowText = candidate.getId().equals("-1") ? "" : String.format("%s", candidate.getCity());
 
         Utils.setTextViewText(this.getDelegate(), R.id.party_name, partyName);
         Utils.setTextViewText(this.getDelegate(), R.id.candidate_first_row, firstRowText);

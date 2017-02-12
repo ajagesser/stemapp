@@ -70,7 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="@string/successText"
+                    android:text="@string/verificationSuccess"
                     android:textColor="@color/colorTextSuccess"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -118,7 +118,6 @@
                         android:layout_height="wrap_content"
                         android:text="M. (Mark) (m)"
                         android:textColor="@color/black" />
-
 
                     <TextView
                         android:id="@+id/candidate_third_row"
