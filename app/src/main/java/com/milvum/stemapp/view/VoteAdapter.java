@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.milvum.stemapp.R;
 import com.milvum.stemapp.model.Party;
+import com.milvum.stemapp.model.Vote;
 
 import java.util.List;
 
@@ -18,11 +19,11 @@ import java.util.List;
  * Created by Randy Tjin Asjoe on 02/10/2017.
  */
 
-public class PartyAdapter extends ArrayAdapter<Party> {
+public class VoteAdapter extends ArrayAdapter<Vote> {
 
     private int mResource;
 
-    public PartyAdapter(Context context, int resource, List<Party> objects) {
+    public VoteAdapter(Context context, int resource, List<Vote> objects) {
         super(context, resource, objects);
 
         mResource = resource;
@@ -32,19 +33,15 @@ public class PartyAdapter extends ArrayAdapter<Party> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
-        Party party = getItem(position);
+        Vote vote = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(mResource, parent, false);
         }
         // Lookup view for data population
-        TextView nameView = (TextView) convertView.findViewById(R.id.party_name);
-        TextView listNumView = (TextView) convertView.findViewById(R.id.party_num);
-        ImageView partyIconView = (ImageView) convertView.findViewById(R.id.party_image);
+        TextView tokenView = (TextView) convertView.findViewById(R.id.vote_token);
         // Populate the data into the template view using the data object
-        nameView.setText(party.getName());
-        listNumView.setText("" + party.getPosition());
-        partyIconView.setImageResource(party.getIcon());
+        tokenView.setText(vote.getToken());
         // Return the completed view to render on screen
         return convertView;
 

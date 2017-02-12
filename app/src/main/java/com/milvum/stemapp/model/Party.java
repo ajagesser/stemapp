@@ -3,8 +3,10 @@ package com.milvum.stemapp.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.List;
+
 /**
- * Created by Randy Tjin Asjoe on 10/02/2017.
+ * Created by Randy Tjin Asjoe on 02/10/2017.
  */
 
 public class Party implements Parcelable {
@@ -13,7 +15,7 @@ public class Party implements Parcelable {
     private String mName;
     private int mPosition;
     private int mIcon;
-
+    
     public Party(int id, String name, int position, int icon) {
         mId = id;
         mName = name;

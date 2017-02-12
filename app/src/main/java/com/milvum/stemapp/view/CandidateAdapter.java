@@ -14,7 +14,7 @@ import com.milvum.stemapp.model.Candidate;
 import java.util.List;
 
 /**
- * Created by Randy Tjin Asjoe on 10/02/2017.
+ * Created by Randy Tjin Asjoe on 02/10/2017.
  */
 
 public class CandidateAdapter extends ArrayAdapter<Candidate> {

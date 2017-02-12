@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".HomeActivity"
+            android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,11 +21,27 @@
         </activity>
         <activity
             android:name=".CandidateListActivity"
-            android:parentActivityName=".PartyListActivity"></activity>
+            android:parentActivityName=".PartyListActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".PartyListActivity"
-            android:parentActivityName=".HomeActivity" />
-
-
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SuccessActivity"
+            android:parentActivityName=".PartyListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".VotingTilesActivty"
+            android:parentActivityName=".HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".VerificationActivity"
+            android:parentActivityName=".VotingTilesActivty"
+            android:screenOrientation="portrait"></activity>
     </application>
+
 </manifest>
