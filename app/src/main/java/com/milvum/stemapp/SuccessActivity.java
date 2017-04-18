@@ -39,13 +39,13 @@ public class SuccessActivity extends AppCompatActivity {
         setContentView(R.layout.activity_success);
         setTitle(getString(R.string.successTitle));
 
-        client = new AsyncHttpClient();
-        alertDialog = new AlertDialog.Builder(this).create();
+//        client = new AsyncHttpClient();
+//        alertDialog = new AlertDialog.Builder(this).create();
 
         fillTextViews();
 
         initialize();
-        vote();
+//        vote();
     }
 
     private void vote () {

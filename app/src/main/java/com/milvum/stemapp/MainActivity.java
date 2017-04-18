@@ -34,7 +34,10 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                    verifyPerson();
+//                      verifyPerson();
+                        Intent i = new Intent(MainActivity.this, HomeActivity.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(i);
                     }
                 }
         );
