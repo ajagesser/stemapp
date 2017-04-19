@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.milvum.stemapp.utils.Utils;
+
 public class HomeActivity extends AppCompatActivity {
 
     @Override
@@ -15,6 +17,10 @@ public class HomeActivity extends AppCompatActivity {
 
         Button nextButton = (Button) this.findViewById(R.id.nextButton);
         Button verifyButton = (Button) this.findViewById(R.id.verifyButton);
+
+        if(Utils.getVotes().size() == 0){
+            verifyButton.setVisibility(View.GONE);
+        }
 
         nextButton.setOnClickListener(
                 new View.OnClickListener() {

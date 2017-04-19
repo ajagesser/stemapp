@@ -33,7 +33,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".HomeActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
         <activity
             android:name=".VotingTilesActivty"
             android:parentActivityName=".HomeActivity"

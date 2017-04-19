@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
 //                      verifyPerson();
                         Intent i = new Intent(MainActivity.this, HomeActivity.class);
-                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(i);
                     }
                 }

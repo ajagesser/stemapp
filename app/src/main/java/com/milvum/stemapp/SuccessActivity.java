@@ -38,6 +38,9 @@ public class SuccessActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_success);
         setTitle(getString(R.string.successTitle));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setHomeButtonEnabled(false);
+
 
 //        client = new AsyncHttpClient();
 //        alertDialog = new AlertDialog.Builder(this).create();
@@ -81,16 +84,7 @@ public class SuccessActivity extends AppCompatActivity {
         final View loadingIcon = findViewById(R.id.loading_icon);
         loadingIcon.startAnimation(rotation);
 
-        final Button homeButton = (Button) findViewById(R.id.homeButton);
-        homeButton.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-                        Intent i = new Intent(SuccessActivity.this, HomeActivity.class);
-                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(i);
-                    }
-                });
-        homeButton.setEnabled(false);
+
 
         final Animation animation = AnimationUtils.loadAnimation(this, R.anim.grow);
         final Dialog dialog = new Dialog(this, R.style.SecretPopupDialogStyle);
@@ -103,33 +97,59 @@ public class SuccessActivity extends AppCompatActivity {
         final Runnable hideSecretToken = new Runnable() {
             @Override
             public void run() {
-                countdown.clearAnimation();
-                dialog.dismiss();
+                try {
+                    countdown.clearAnimation();
+                    dialog.dismiss();
+                } catch (Error e){
 
+                }
             }
         };
 
         final Runnable showSecretToken = new Runnable() {
             @Override
             public void run() {
-                dialog.show();
+              try {
+                  dialog.show();
 
-                handler.postDelayed(hideSecretToken, animation.getDuration());
-                countdown.startAnimation(animation);
+                  handler.postDelayed(hideSecretToken, animation.getDuration());
+                  countdown.startAnimation(animation);
+              } catch (Error e){
+
+              }
             }
         };
 
-        Runnable showSuccess = new Runnable() {
+        final Runnable showSuccess = new Runnable() {
             @Override
             public void run() {
-                generateVotes(dialog);
-                onSuccess();
-                handler.postDelayed(showSecretToken, Constants.SECRET_WAIT_TIME);
+                try {
+                    generateVotes(dialog);
+                    onSuccess();
+                    handler.postDelayed(showSecretToken, Constants.SECRET_WAIT_TIME);
+                } catch (Error e){
+
+                }
+
             }
         };
 
 
         handler.postDelayed(showSuccess, Constants.SECRET_WAIT_TIME);
+
+        final Button homeButton = (Button) findViewById(R.id.homeButton);
+        homeButton.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        handler.removeCallbacks(showSuccess);
+                        handler.removeCallbacks(showSecretToken);
+                        handler.removeCallbacks(hideSecretToken);
+                        Intent i = new Intent(SuccessActivity.this, HomeActivity.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(i);
+                    }
+                });
+        homeButton.setEnabled(false);
     }
 
     private void generateVotes(Dialog dialog) {
